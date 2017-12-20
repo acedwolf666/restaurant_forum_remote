@@ -1,32 +1,37 @@
 <div class="container">
-<h1>Welcome Admin</h1>
-<div class="col-mid-12">
-  <div><%= link_to 'Share Your Restaurant', new_admin_restaurant_path, class: "btn btn-primary btn-lg active"%></div>
+  <h1>Welcome Admin</h1>
+  <div>
+    <%= link_to 'Restaurant', admin_restaurants_path %> |
+    <%= link_to 'Categories', admin_categories_path %>
+  </div>
   <br>
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Category</th>
-        <th>Name</th>
-        <th>Options</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @restaurants.each do |restaurant| %>
-      <tr>
-        <th scope="row"><%= restaurant.id %></th>
-        <td><%= restaurant.category.name %></td>
-        <td><%= restaurant.name %></td>
-        <td>
-          <%= link_to 'Show', admin_restaurant_path(restaurant) %>
-          <%= link_to 'Edit', edit_admin_restaurant_path(restaurant)%>
-          <%= link_to 'Delete',admin_restaurant_path(restaurant), method: :delete, data: {confirm:"Are you sure?"} %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="text-center"> <%= paginate @restaurants %> </div>
-</div>
+  <div class="col-mid-12">
+    <div><%= link_to 'Share Your Restaurant', new_admin_restaurant_path, class: "btn btn-primary btn-lg active"%></div>
+    <br>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @restaurants.each do |restaurant| %>
+        <tr>
+          <th scope="row"><%= restaurant.id %></th>
+          <td><%= restaurant.category.name %></td>
+          <td><%= restaurant.name %></td>
+          <td>
+            <%= link_to 'Show', admin_restaurant_path(restaurant) %>
+            <%= link_to 'Edit', edit_admin_restaurant_path(restaurant)%>
+            <%= link_to 'Delete',admin_restaurant_path(restaurant), method: :delete, data: {confirm:"Are you sure?"} %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="text-center"> <%= paginate @restaurants %> </div>
+  </div>
 </div>
