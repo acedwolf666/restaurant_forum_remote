@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :restaurants, only: [:index, :show]
-  root "restaurants#index"
+  resources :categories, only: :show
   
+  root "restaurants#index"
+
   namespace :admin do
     resources :restaurants
     resources :categories
