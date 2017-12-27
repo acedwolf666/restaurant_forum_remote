@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
   def index
+    @restaurants = Restaurant.page(params[:page]).per(12)
   end
 end
