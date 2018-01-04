@@ -18,6 +18,6 @@ private
   end
 
   def user_perams
-    params.require(:user).permit(:name, :intro)
+    params.require(:user).permit(:name, :intro, :avatar)
   end
 end
