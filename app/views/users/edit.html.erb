@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <%= form_for @user do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :intro, "Introduction" %>
+        <%= f.text_area :intro, class: "form-control" %>
+      </div>
+      <div class="form-group">
+         <%= f.submit "Update", class: "btn btn-primary" %>
+         <%= link_to "Cancel", user_path(@user), class: "btn btn-default" %>
+      </div>
+  </div>
+</div>

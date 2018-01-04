@@ -5,11 +5,12 @@
         <%= @user.avatar %>
       </div>
       <div class="col-sm-6">
-        <%= @user.name %>
-        <%= @user.email %>
+        <h2><%= @user.name %></h2>
+        <p><%= @user.email %></p>
         <div><%= simple_format @user.intro %></div>
-        <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
+          <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
       </div>
+      <div class="clearfix"></div>
     </div>
   </div>
 </div>
