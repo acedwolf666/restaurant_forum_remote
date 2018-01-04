@@ -1,16 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6">
     <%= form_for @user do |f| %>
-    <div class="form-group">
-      <%= f.label :avatar, "Upload Your Avatar" %>
-      <%= image_tag @user.avatar if @user.avatar? %>
-      <%= f.file_field :avatar %>
-    </div>
-    <% end %>
-    </div>
-    <div class="col-sm-6">
-      <%= form_for @user do |f| %>
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <%= f.label :avatar, "Upload Your Avatar" %>
+          <%= image_tag @user.avatar if @user.avatar? %>
+          <%= f.file_field :avatar %>
+        </div>
+      </div>
+      <div class="col-sm-6">
         <div class="form-group">
           <%= f.label :name, "Name" %>
           <%= f.text_field :name, class: "form-control" %>
