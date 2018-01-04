@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <div class="col-xs-12 col-sm-6">
+        <%= @user.avatar %>
+      </div>
+      <div class="col-sm-6">
+        <%= @user.name %>
+        <%= @user.email %>
+        <div><%= simple_format @user.intro %></div>
+        <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
