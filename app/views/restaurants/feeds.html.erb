@@ -1,0 +1,39 @@
+<ul class="nav nav-tabs">
+  <li role="presentation"><%= link_to 'Home',root_path %></li>
+  <li role="presentation" class="<%= "active" if @recent_restaurants%>"><%= link_to 'Latest Status',feeds_restaurants_path %></li>
+</ul>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h1>Restaurants' Latest Status</h1>
+      <hr>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Latest Restaurants</div>
+        <div class="panel-body">
+          <% @recent_restaurants.each do |restaurant| %>
+            <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+            <p><%= restaurant.category.name %></p>
+            <p><%= restaurant.description %></p>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Recent Comments</div>
+        <div class="panel-body">
+          <% @recent_comments.each do |comment| %>
+            <h4><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant) %></h4>
+            <p><%= comment.content %></p>
+            <p>by <%= link_to comment.user.name, user_path(comment.user) %></p>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

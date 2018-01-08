@@ -1,3 +1,9 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%= "active" if @categories %>"><%= link_to 'Home',root_path %></li>
+  <li role="presentation"><%= link_to 'Latest Status',feeds_restaurants_path %></li>
+</ul>
+<br>
+
 <div class="container">
   <div class="row">
     <ul class="nav nav-pills nav-pills-center">
