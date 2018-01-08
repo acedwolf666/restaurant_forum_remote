@@ -9,7 +9,7 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
-  has_many :comments
+  has_many :comments, dependent: :restrict_with_error
   has_many :restaurants, through: :comments
 
   mount_uploader :avatar, AvatarUploader
