@@ -10,7 +10,11 @@ class User < ApplicationRecord
   end
 
   has_many :comments, dependent: :restrict_with_error
+  
   has_many :restaurants, through: :comments
+
+  has_many :favorites, dependent: :destroy
+  has_many :favored_restaurants, through: :favorites, source: :restaurant
 
   mount_uploader :avatar, AvatarUploader
 
