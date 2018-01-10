@@ -30,4 +30,17 @@ class RestaurantsController < ApplicationController
     favorite.destroy_all
     redirect_back(fallback_location:root_path)
   end
+
+  def like
+    @restaurant = Restaurant.find(params[:id])
+    Like.create!(restaurant: @restaurant, user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def dislike
+    @restaurant = Restaurant.find(params[:id])
+    like = Like.where(restaurant: @restaurant, user: current_user)
+    like.destroy_all
+    redirect_back(fallback_location:root_path)
+  end
 end
