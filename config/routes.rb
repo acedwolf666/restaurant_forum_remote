@@ -9,9 +9,6 @@ Rails.application.routes.draw do
 
     collection do
       get :feeds
-    end
-
-    collection do
       get :ranking
     end
 
