@@ -4,13 +4,27 @@
   <li role="presentation" class="<%= "active" if @restaurants%>"><%= link_to 'Top 10 Restaurants',ranking_restaurants_path %></li>
 </ul>
 
-<h1>Top 10 Restaurants <small>(most favorites)</small></h1>
+<div class="container">
+  <div calss="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="page-header">
+        <h1>Top 10 Restaurants <small>(most favorites)</small></h1>
+      </div>
 
-<% @restaurants.each do |restaurant| %>
-  <%= image_tag restaurant.image %>
-  <h4><%= link_to restaurant.name, restaurant_path(restaurant)%></h4>
-  <%= render partial: 'shared/favorite', locals: { restaurant: restaurant } %>
-  <%= restaurant.category.name %>
-  <span>Saved by <%= restaurant.favorites_count %> people</span>
-  <p><%= truncate(restaurant.description, length: 200) %></p>
-<% end %>
+      <div class="ranking-item">
+      <% @restaurants.each do |restaurant| %>
+        <div class="col-md-3">
+          <%= image_tag restaurant.image, class: "img-responsive center-block" %>
+        </div>
+        <div class="col-md-9">
+          <h4><%= link_to restaurant.name, restaurant_path(restaurant)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= render partial: 'shared/favorite', locals: { restaurant: restaurant } %><span>(Favored by <%= restaurant.favorites_count %> people)</span></h4>
+          <p class="label label-default"><%= restaurant.category.name %></p>
+          <p><%= truncate(restaurant.description, length: 200) %></p>
+          <hr>
+          <div class="clearfix"></div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
