@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs">
+  <li role="presentation"><%= link_to 'Home',root_path %></li>
+  <li role="presentation"><%= link_to 'Latest Status',feeds_restaurants_path %></li>
+  <li role="presentation" class="<%= "active" if @restaurants%>"><%= link_to 'Top 10 Restaurants',ranking_restaurants_path %></li>
+</ul>
+
+<h1>Top 10 Restaurants <small>(most favorites)</small></h1>
+
+<% @restaurants.each do |restaurant| %>
+  <%= image_tag restaurant.image %>
+  <h4><%= link_to restaurant.name, restaurant_path(restaurant)%></h4>
+  <%= render partial: 'shared/favorite', locals: { restaurant: restaurant } %>
+  <%= restaurant.category.name %>
+  <span>Saved by <%= restaurant.favorites_count %> people</span>
+  <p><%= truncate(restaurant.description, length: 200) %></p>
+<% end %>
