@@ -18,10 +18,10 @@ namespace :dev do
   end
 
   task fake_user: :environment do
-  
+
     20.times do |i|
     User.create!(
-    name: "user_name",
+    name: FFaker::Name.name,
     email: FFaker::InternetSE.free_email,
     password: "12345678",
     avatar: File.open(File.join(Rails.root,"/public/img/avatar.png"))
