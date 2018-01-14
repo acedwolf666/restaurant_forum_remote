@@ -14,7 +14,11 @@
       <div class="ranking-item">
       <% @restaurants.each do |restaurant| %>
         <div class="col-md-3">
-          <%= image_tag restaurant.image, class: "img-responsive center-block" %>
+          <% for img_id in 1..10 %>
+            <% if image_path(restaurant.image).include?('/model'+img_id.to_s+'.jpg') %>
+              <%= image_tag('/img/model'+img_id.to_s+'.jpg', class: "img-responsive center-block")%>
+            <% end %>
+          <% end %>
         </div>
         <div class="col-md-9">
           <h4><%= link_to restaurant.name, restaurant_path(restaurant)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= render partial: 'shared/favorite', locals: { restaurant: restaurant } %><span>(Favored by <%= restaurant.favorites_count %> people)</span></h4>
