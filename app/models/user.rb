@@ -9,6 +9,10 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
+  def followed?(user)
+    self.followeds.include?(user)
+  end
+
   has_many :comments, dependent: :restrict_with_error
 
   has_many :restaurants, through: :comments
