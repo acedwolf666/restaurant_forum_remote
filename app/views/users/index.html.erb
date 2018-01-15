@@ -1,16 +1,35 @@
-<ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <ul class="nav nav-tabs">
+        <li role="presentation"><%= link_to 'Home',root_path %></li>
+        <li role="presentation"><%= link_to 'Latest Status',feeds_restaurants_path %></li>
+        <li role="presentation"><%= link_to 'Top 10 Restaurants',ranking_restaurants_path %></li>
+        <li role="presentation" class="<%= "active" if @users%>"><%= link_to 'Foodies',users_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<br>
 
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %>
-      <% if user != current_user %>
-        <% if current_user.followed?(user)%>
-          <%= link_to 'Unfollow', followship_path(user), method: :delete %>
-        <% else %>
-          <%= link_to 'Follow', followships_path(followed_id: user), method: :post %>
-        <% end %>
-      <% end %> 
-    </li>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h1>Foodies</h1>
+      <hr>
+    </div>
 
-</ul>
+    <% @users.each do |user| %>
+      <% if user.role!="admin"%>
+        <div class="col-md-3 col-sm-4 col-xs-6 text-center user-item">
+          <% if image_path(user.avatar).include?('/avatar.png') %>
+            <%= image_tag('/img/avatar.png', class: "img-rounded")%>
+          <% end %>
+          <h4><%= link_to user.name, user_path(user) %></h4>
+          <%= render partial: "shared/follow", locals: {user: user} %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
