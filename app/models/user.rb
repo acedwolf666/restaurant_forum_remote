@@ -26,6 +26,9 @@ class User < ApplicationRecord
   has_many :followships, dependent: :destroy
   has_many :followeds, through: :followships
 
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "followed_id"
+  has_many :self_followers, through: :inverse_followships, source: :user
+
   mount_uploader :avatar, AvatarUploader
 
 
