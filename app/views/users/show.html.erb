@@ -13,26 +13,84 @@
         <% if @user.email == current_user.email %>
           <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
         <% end %>
+        <hr>
+        <ul class="list-unstyled list-inline">
+          <li><strong><%= @commented_restaurants.count %></strong> commented restauratns&nbsp;;</li>
+          <li><strong><%= @favored_restaurants.count %></strong> favored restaurants&nbsp;;</li>
+          <li>Followed<strong> <%= @followeds.count %></strong> people&nbsp;;</li>
+          <li><strong><%= @followers.count %></strong> followers</li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
 <div class="clearfix"></div>
 <br>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong><%= @commented_restaurants.count%></strong> Commented Restaurants</h3>
-          </div>
-          <div class="panel-body">
-            <% @commented_restaurants.each do |restaurant|%>
-            <div class="my-restaurant">
-            <% for img_id in 1..10 %>
-              <% if image_path(restaurant.image).include?('/model'+img_id.to_s+'.jpg') %>
-                <%= image_tag('/img/model'+img_id.to_s+'.jpg', class: "img-responsive img-rounded")%>
-              <% end %>
-            <% end %>
-            <%= link_to restaurant.name, restaurant_path(restaurant) %>
-            </div>
-            <% end %>
-          </div>
+
+
+
+    <div class="col-md-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Followed <%= @followeds.count %></h4>
         </div>
+        <ul class="list-group">
+          <% @followeds.each do |followed|%>
+          <li class="list-group-item">
+            <%= image_tag(followed.avatar, height: 30, width: 30, class: "img-circle")%>
+            <%= link_to followed.name, user_path(followed) %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4> <%= @followers.count %> followers</h4>
+        </div>
+        <ul class="list-group">
+          <% @followers.each do |follower|%>
+          <li class="list-group-item">
+            <%= image_tag(follower.avatar, height: 30, width: 30, class: "img-circle")%>
+            <%= link_to follower.name, user_path(follower) %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @commented_restaurants.count%></strong> Commented Restaurants</h3>
+        </div>
+        <div class="panel-body">
+          <% @commented_restaurants.each do |restaurant|%>
+          <div class="my-restaurant">
+          <% for img_id in 1..10 %>
+            <% if image_path(restaurant.image).include?('/model'+img_id.to_s+'.jpg') %>
+              <%= image_tag('/img/model'+img_id.to_s+'.jpg', class: "img-responsive img-rounded")%>
+            <% end %>
+          <% end %>
+          <%= link_to restaurant.name, restaurant_path(restaurant) %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @favored_restaurants.count%></strong> Favored Restaurants</h3>
+        </div>
+        <div class="panel-body">
+          <% @favored_restaurants.each do |favored|%>
+          <div class="my-restaurant">
+          <% for img_id in 1..10 %>
+            <% if image_path(favored.image).include?('/model'+img_id.to_s+'.jpg') %>
+              <%= image_tag('/img/model'+img_id.to_s+'.jpg', class: "img-responsive img-rounded")%>
+            <% end %>
+          <% end %>
+          <%= link_to favored.name, restaurant_path(favored) %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
