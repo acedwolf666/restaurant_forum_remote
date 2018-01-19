@@ -29,7 +29,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     favorite = Favorite.where(restaurant: @restaurant, user: current_user)
     favorite.destroy_all
-    @restaurant.count_favorites
+    #@restaurant.count_favorites
     redirect_back(fallback_location:root_path)
   end
 
