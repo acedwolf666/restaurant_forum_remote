@@ -21,7 +21,7 @@ class RestaurantsController < ApplicationController
   def favorite
     @restaurant = Restaurant.find(params[:id])
     Favorite.create!(restaurant: @restaurant, user: current_user)
-    @restaurant.count_favorites
+    #@restaurant.count_favorites  (replaced by counter_cache)
     redirect_back(fallback_location: root_path)
   end
 

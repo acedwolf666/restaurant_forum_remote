@@ -29,9 +29,10 @@
           <% end %>
         </div>
         <div class="col-md-9">
-          <h4><%= link_to restaurant.name, restaurant_path(restaurant)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= render partial: 'shared/favorite', locals: { restaurant: restaurant } %><span>(Favored by <%= restaurant.favorites_count %> people)</span></h4>
+          <h4><%= link_to restaurant.name, restaurant_path(restaurant)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
           <p class="label label-default"><%= restaurant.category.name %></p>
           <p><%= truncate(restaurant.description, length: 200) %></p>
+          <%= render partial: 'shared/favorite', locals: { restaurant: restaurant } %><span>(Favored by <%= restaurant.favorites_count %> people)</span>
           <hr>
           <div class="clearfix"></div>
         </div>

@@ -48,6 +48,7 @@ gem 'ffaker'
 gem 'kaminari'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'font-awesome-rails'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

@@ -29,7 +29,8 @@ class User < ApplicationRecord
   has_many :inverse_followships, class_name: "Followship", foreign_key: "followed_id"
   has_many :self_followers, through: :inverse_followships, source: :user
 
+  has_many :friendships
+  has_many :friends, through: :friendships
+
   mount_uploader :avatar, AvatarUploader
-
-
 end
