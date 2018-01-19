@@ -2,7 +2,7 @@ namespace :dev do
   task fake_restaurant: :environment do
     Restaurant.destroy_all
 
-    501.times do |i|
+    101.times do |i|
       Restaurant.create!(name: FFaker::NatoAlphabet.alphabetic_code,
       opening_hours: FFaker::Time.datetime,
       tel: FFaker::PhoneNumber.short_phone_number,
@@ -18,7 +18,7 @@ namespace :dev do
   end
 
   task fake_user: :environment do
-
+    User.where(role: nil).destroy_all
     20.times do |i|
     User.create!(
     name: FFaker::Name.name,
@@ -27,7 +27,6 @@ namespace :dev do
     avatar: File.open(File.join(Rails.root,"/public/img/avatar.png"))
     )
     end
-    puts "have done fake users"
     puts "Now you have #{User.count} user data"
   end
 
@@ -42,5 +41,29 @@ namespace :dev do
     end
     puts "have done fake comments"
     puts "Now you have #{Comment.count} comment data"
+  end
+
+  task fake_favorite: :environment do
+    Favorite.destroy_all
+    User.all.each do |u|
+     20.times do
+       u.favorites.create!(
+        restaurant: Restaurant.all.sample,
+       )
+     end
+    end
+    puts "now you have fake #{Favorite.count} favorited restaurants"
+  end
+
+  task fake_like: :environment do
+    Like.destroy_all
+    User.all.each do |u|
+     5.times do
+       u.likes.create!(
+        restaurant: Restaurant.all.sample,
+       )
+     end
+    end
+    puts "now you have #{Like.count} liked restaurants"
   end
 end
