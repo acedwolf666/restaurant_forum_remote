@@ -1,7 +1,11 @@
 <% if user != current_user %>
   <% if current_user.followed?(user)%>
-    <%= link_to 'Unfollow', followship_path(user), method: :delete, class: "btn btn-primary" %>
+    <%= link_to followship_path(user), method: :delete, class: "btn btn-primary" do%>
+      <%= fa_icon "thumbs-up", text: "Unfollow"%>
+    <% end %>
   <% else %>
-    <%= link_to 'Follow', followships_path(followed_id: user), method: :post, class: "btn btn-danger" %>
+    <%= link_to followships_path(followed_id: user), method: :post, class: "btn btn-danger" do%>
+      <i class="glyphicon glyphicon-thumbs-up"></i> Follow
+    <% end %>
   <% end %>
 <% end %>

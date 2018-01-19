@@ -13,6 +13,10 @@ class User < ApplicationRecord
     self.followeds.include?(user)
   end
 
+  def friended?(user)
+    self.friends.include?(user)
+  end
+
   has_many :comments, dependent: :restrict_with_error
 
   has_many :restaurants, through: :comments
