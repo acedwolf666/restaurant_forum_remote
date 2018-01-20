@@ -24,8 +24,11 @@
           <% @recent_restaurants.each do |restaurant| %>
             <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
             <p><%= restaurant.category.name %></p>
-            <p><%= restaurant.description %></p>
-            <hr>
+            <div>
+              <p><%= restaurant.description %></p>
+              <small class="feeds-time"><%= restaurant.created_at.time.strftime("%Y-%m-%d %H:%M") %> </small>
+              <hr>
+            </div>
           <% end %>
         </div>
       </div>
@@ -38,6 +41,7 @@
             <h4><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant) %></h4>
             <p><%= comment.content %></p>
             <p>by <%= link_to comment.user.name, user_path(comment.user) %></p>
+            <small class="feeds-time"><%= comment.created_at.time.strftime("%Y-%m-%d %H:%M") %> </small>
             <hr>
           <% end %>
         </div>

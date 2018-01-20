@@ -51,5 +51,14 @@
 }
 .user-item img{
   width: 50%;
-  height:50%;
+  height: 50%;
+}
+
+.feeds-time{
+  font-style: italic;
+  float: right;
+}
+//to make feeds-tim above hr line
+hr{
+  margin-top: 30px;
 }
