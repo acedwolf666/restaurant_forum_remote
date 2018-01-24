@@ -38,5 +38,10 @@ Rails.application.routes.draw do
   end
 
   resources :followships, only: [:create, :destroy]
-  resources :friendships, only: [:create, :destroy, :show]
+  resources :friendships, only: [:create, :destroy, :show] do
+    member do
+      post :accept
+      post :cancel
+    end
+  end
 end
