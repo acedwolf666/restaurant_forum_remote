@@ -17,6 +17,11 @@ class User < ApplicationRecord
     self.friends.include?(user)
   end
 
+  def all_friends
+    friends = self.friends + self.inverse_friends
+    return friends.uniq
+  end
+
   has_many :comments, dependent: :restrict_with_error
 
   has_many :restaurants, through: :comments
@@ -29,14 +34,12 @@ class User < ApplicationRecord
 
   has_many :followships, dependent: :destroy
   has_many :followeds, through: :followships
-
   has_many :inverse_followships, class_name: "Followship", foreign_key: "followed_id"
   has_many :self_followers, through: :inverse_followships, source: :user
 
   has_many :friendships
   has_many :friends, through: :friendships
-
-  has_many :inverse_friendships, class_name:"Freindship", foreign_key: "friend_id"
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   mount_uploader :avatar, AvatarUploader

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Friends: <%= @all_friends.count %></strong></h3>
+        </div>
+        <div class="panel-body">
+          <% @all_friends.each do |friend| %>
+          <div class="friends">
+            <% if image_path(friend.avatar).include?('/avatar.png') %>
+              <%= image_tag('/img/avatar.png', height: 50, width: 50, class: "img-circle")%>
+            <% end %>
+            <div class="caption"><%= link_to friend.name, user_path(friend)%></div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

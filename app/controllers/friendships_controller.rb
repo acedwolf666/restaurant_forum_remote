@@ -17,4 +17,8 @@ class FriendshipsController < ApplicationController
     flash[:alert] = "Friendship destroyed"
     redirect_back(fallback_location: root_path)
   end
+
+  def show
+    @all_friends = current_user.all_friends
+  end
 end

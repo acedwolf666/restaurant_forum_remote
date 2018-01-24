@@ -11,7 +11,12 @@
         <p>Email: <%= @user.email %></p>
         <div>Introduction:<br><%= simple_format @user.intro %></div>
         <% if @user.email == current_user.email %>
-          <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
+          <%= link_to edit_user_path(@user), class: "btn btn-primary" do %>
+            <%= fa_icon "file-text-o", text: "Edit Profile" %>
+          <% end %>
+          <%= link_to friendship_path(@user), class: "btn btn-primary" do %>
+            <%= fa_icon "users", text: "Friendships" %>
+            <% end %>
         <% end %>
         <hr>
         <ul class="list-unstyled list-inline">
@@ -37,7 +42,9 @@
         <ul class="list-group">
           <% @followeds.each do |followed|%>
           <li class="list-group-item">
-            <%= image_tag(followed.avatar, height: 30, width: 30, class: "img-circle")%>
+            <% if image_path(followed.avatar).include?('/avatar.png') %>
+              <%= image_tag('/img/avatar.png', height: 30, width: 30, class: "img-circle")%>
+            <% end %>
             <%= link_to followed.name, user_path(followed) %>
           </li>
           <% end %>
