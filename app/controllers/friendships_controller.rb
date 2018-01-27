@@ -1,5 +1,4 @@
 class FriendshipsController < ApplicationController
-
   def create
     @friendship = current_user.friendships.new(friend_id: params[:friend_id], status: "pending")
     if @friendship.save
@@ -14,7 +13,9 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = current_user.friendships.where(friend_id: params[:id])
     @friendship.destroy_all
-    flash[:alert] = "Friendship destroyed"
+    @inverse_friendship = current_user.inverse_friendships.where(user_id: params[:id])
+    @inverse_friendship.destroy_all
+    flash[:alert] = "Unfriended"
     redirect_back(fallback_location: root_path)
   end
 
@@ -23,12 +24,10 @@ class FriendshipsController < ApplicationController
   end
 
   def accept
-    @pending_friend = current_user.inverse_pending_friends.where(friend_id: params[:id])
-    if @pending_friend.update(status: accept)
-      flash[:notice] = "Accepted #{current_user.inverse_pending_friends.name}'s request!"
-    else
-      flash[:alert] = @pending_friends.errors.full_messages.to_sentence
-    end
+    @pending_friend = current_user.inverse_pending_friendships.find_by(user_id: params[:id])
+    @pending_friend.update_attributes(status: "accept")
+    flash[:notice] = "Accepted Request!"
+    #flash[:alert] = @pending_friends.errors.full_messages.to_sentence
     redirect_back(fallback_location: root_path)
   end
 
