@@ -12,10 +12,54 @@
               <%= image_tag('/img/avatar.png', height: 50, width: 50, class: "img-circle")%>
             <% end %>
             <div class="caption"><%= link_to friend.name, user_path(friend)%></div>
+            <div class="caption"><%= render partial: "shared/friend", locals: {user: friend} %></div>
           </div>
           <% end %>
         </div>
       </div>
+      <hr>
     </div>
-  </div>
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Friendships Requests: <%= @all_pending_friends.count %></strong></h3>
+        </div>
+        <div class="panel-body">
+          <% @all_pending_friends.each do |pending_friend| %>
+          <div class="friends">
+            <% if image_path(pending_friend.avatar).include?('/avatar.png') %>
+              <%= image_tag('/img/avatar.png', height: 50, width: 50, class: "img-circle")%>
+            <% end %>
+            <div class="caption"><%= link_to pending_friend.name, user_path(pending_friend)%></div>
+            <div class="caption"><%= render partial: "shared/friend", locals: {user: pending_friend} %></div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Pending Requests: <%= @all_inverse_pending_friends.count %></strong></h3>
+        </div>
+        <div class="panel-body">
+          <% @all_inverse_pending_friends.each do |inverse_pending_friend| %>
+          <div class="friends">
+            <% if image_path(inverse_pending_friend.avatar).include?('/avatar.png') %>
+              <%= image_tag('/img/avatar.png', height: 50, width: 50, class: "img-circle")%>
+            <% end %>
+            <div class="caption"><%= link_to inverse_pending_friend.name, user_path(inverse_pending_friend)%></div>
+            <div class="caption"><%= render partial: "shared/friend", locals: {user: inverse_pending_friend} %></div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="clearfix"></div>
 </div>

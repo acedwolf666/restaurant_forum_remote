@@ -22,8 +22,16 @@ class User < ApplicationRecord
   end
 
   def all_friends
-    friends = self.friends + self.inverse_friends
-    return friends.uniq
+    all_friends = self.accepted_friends + self.inverse_accepted_friends
+    return all_friends.uniq
+  end
+
+  def all_inverse_pending_friends
+    self.inverse_pending_friends
+  end
+
+  def all_pending_friends
+    self.pending_friends
   end
 
   def accepted?(user)

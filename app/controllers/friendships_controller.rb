@@ -21,6 +21,8 @@ class FriendshipsController < ApplicationController
 
   def show
     @all_friends = current_user.all_friends
+    @all_pending_friends = current_user.pending_friends
+    @all_inverse_pending_friends = current_user.inverse_pending_friends
   end
 
   def accept
