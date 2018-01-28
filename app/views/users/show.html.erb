@@ -15,7 +15,7 @@
             <%= fa_icon "file-text-o", text: "Edit Profile" %>
           <% end %>
           <%= link_to friendship_path(@user), class: "btn btn-primary" do %>
-            <%= fa_icon "users", text: "Friendships" %>
+            <%= fa_icon "users", text: "Friendships #{count_friendships}" %>
             <% end %>
         <% end %>
         <hr>
