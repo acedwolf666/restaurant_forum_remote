@@ -25,6 +25,10 @@ Rails.application.routes.draw do
       post :like
       post :dislike
     end
+
+    collection do
+      get :about
+    end
   end
 
   resources :categories, only: :show

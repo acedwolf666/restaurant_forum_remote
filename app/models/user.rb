@@ -42,6 +42,14 @@ class User < ApplicationRecord
     self.pending_friends.include?(user)
   end
 
+  def self.get_user_count
+    User.all.size
+  end
+
+  def get_comment_count
+    comments.all.size
+  end
+  
   has_many :comments, dependent: :restrict_with_error
 
   has_many :restaurants, through: :comments
